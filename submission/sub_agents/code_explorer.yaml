@@ -1,0 +1,31 @@
+# Read-only code-exploration sub-agent.
+# Wrapped as an AgentTool in agent.yaml with skip_summarization: true
+# so the parent agent receives the full findings (not a lossy summary)
+# while intermediate read_file outputs stay outside the parent's
+# main conversation context.
+
+agent_class: LlmAgent
+name: code_explorer
+description: >-
+  A read-only sub-agent that explores repositories, locates code symbols,
+  traces call/dependency graphs, and returns concise findings with file
+  paths, line numbers, and code snippets. Never modifies files or executes
+  code changes.
+model: gemma-4-31b-it-qat-w4a16-ct
+instruction: !include prompts/explorer.md
+tools:
+  - read_file
+  - search_similar_code
+  - get_code_neighbors
+  - get_code_subgraph
+  - get_status
+  - run_command
+generate_content_config:
+  temperature: 0.1
+  top_p: 0.9
+  max_output_tokens: 4096
+  thinking_config:
+    thinking_budget: 1024
+    thinking_level: "MINIMAL"
+    include_thoughts: false
+include_contents: none
