@@ -1,4 +1,5 @@
-[SKILL.md](https://github.com/user-attachments/files/32723689/SKILL.md)---
+---
+
 name: repo_navigation
 description: Navigate code repositories efficiently using semantic search, code graphs, symbol resolution, and targeted file reads. Avoid reading entire repositories; progressively narrow the search space.
 whenToUse: When you need to find code, understand repository structure, locate definitions or callers of symbols, or trace dependencies. Use before making any edits.
