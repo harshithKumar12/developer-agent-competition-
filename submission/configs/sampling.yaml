@@ -1,0 +1,10 @@
+temperature: 0.1
+top_p: 0.95
+top_k: 40
+max_output_tokens: 16384
+presence_penalty: 0.0
+frequency_penalty: 0.0
+thinking_config:
+  thinking_budget: 2048
+  thinking_level: "LOW"
+  include_thoughts: false
