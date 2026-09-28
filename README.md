@@ -6,7 +6,7 @@ Built declaratively on **Google ADK (Agent Development Kit)**, powered by the **
 
 ---
 
-## 🏆 What It Does
+## What It Does
 
 Given a bug report / issue ticket inside `/workspace`, the agent:
 
@@ -21,7 +21,7 @@ Given a bug report / issue ticket inside `/workspace`, the agent:
 
 ---
 
-## ⚙️ Architecture
+## Architecture
 
 The agent is a **declarative ADK config** — no imperative agent code. The whole agent is defined in YAML and packaged into `submission.zip`.
 
@@ -84,7 +84,7 @@ thinking_config:
 
 ---
 
-## 🎯 The Prompt (system.md)
+## The Prompt (system.md)
 
 The heart of the agent is a disciplined 7-step workflow:
 
@@ -100,7 +100,7 @@ Budget semantics: `get_status` / `submit_patch` are free; everything else counts
 
 ---
 
-## 🛠 Skills
+## Skills
 
 | Skill | Purpose |
 |-------|---------|
@@ -110,7 +110,7 @@ Budget semantics: `get_status` / `submit_patch` are free; everything else counts
 
 ---
 
-## 📦 Building the Submission
+## Building the Submission
 
 `submission.zip` is the packaged agent (8 files, ~8.3 KB). Build and verify with:
 
@@ -121,16 +121,16 @@ python final_report.py    # Independent verification checklist + workspace summa
 
 ### Verification checks
 
-- ✅ `!include` path — uses `prompts/explorer.md`, **no** `../` path traversal (the `!include` sandbox blocks `..`)
-- ✅ `system.md` — no redundant `{hints}` template variable (the harness injects hints as a separate message)
-- ✅ `thinking_budget: 2048` — matches build/report assertions
-- ✅ `agent.yaml` at zip root (`MissingRootConfigError` otherwise)
+-  `!include` path — uses `prompts/explorer.md`, **no** `../` path traversal (the `!include` sandbox blocks `..`)
+-  `system.md` — no redundant `{hints}` template variable (the harness injects hints as a separate message)
+-  `thinking_budget: 2048` — matches build/report assertions
+-  `agent.yaml` at zip root (`MissingRootConfigError` otherwise)
 
 > Note: the repo also contains a stale `gemma-4-developer-agent.zip` (18.8 MB, corrupt `BadZipFile`) — not referenced by the build and safe to delete.
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Python 3.12+ (ADK).
@@ -147,14 +147,14 @@ python final_report.py     # verify the artifact
 
 ---
 
-## ⚠️ Known Blockers
+## Known Blockers
 
 - **Windows HTTPS egress** — this repo was originally built on Windows, where all HTTPS submission paths (Kaggle CLI, GitHub API, `curl`) failed with a Schannel `SEC_E_NO_CREDENTIALS` TLS error. The `submission.zip` artifact itself is valid; only the *upload path* was affected. On a clean environment (WSL, CI, or Linux) standard uploads work.
 - **Submission blocked from this machine** — use WSL, a CI runner, or the Kaggle web UI to submit.
 
 ---
 
-## 📁 Repository Layout
+## Repository Layout
 
 ```
 kaggle-gemma-4-developer-agent/
@@ -167,9 +167,3 @@ kaggle-gemma-4-developer-agent/
 ├── submission.zip             # Built artifact (8 files, ~8.3 KB)
 └── *.py                       # Ad-hoc Kaggle/GitHub submission helper scripts
 ```
-
----
-
-## 📄 License
-
-Distributed under the Kaggle competition rules. This is a competition submission for personal/competitive use.
