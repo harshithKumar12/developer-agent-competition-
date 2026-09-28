@@ -1,0 +1,27 @@
+﻿agent_class: LlmAgent
+name: swegemma_swe_agent
+model: gemma-4-31b-it-qat-w4a16-ct
+instruction: !include prompts/system.md
+
+tools:
+  - run_command
+  - read_file
+  - edit_file
+  - write_file
+  - search_similar_code
+  - get_code_neighbors
+  - get_code_subgraph
+  - get_status
+  - submit_patch
+  - agent_tool:
+      config_path: sub_agents/code_explorer.yaml
+      skip_summarization: true
+
+generate_content_config: !include configs/sampling.yaml
+
+skills:
+  - skills/repo_navigation
+  - skills/debugging
+  - skills/test_driven_repair
+
+include_contents: default
